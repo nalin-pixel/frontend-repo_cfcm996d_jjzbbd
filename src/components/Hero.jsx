@@ -1,11 +1,19 @@
-import Spline from '@splinetool/react-spline'
+import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
+
+const Spline = lazy(() => import('@splinetool/react-spline'))
 
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/DtQLjBkD1UpownGS/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Suspense
+          fallback={
+            <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08),transparent_60%)]" />
+          }
+        >
+          <Spline scene="https://prod.spline.design/DtQLjBkD1UpownGS/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        </Suspense>
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/70 to-slate-950 pointer-events-none" />
